@@ -27,8 +27,6 @@ namespace LidarrAPI
 
             env.ConfigureNLog("nlog.config");
 
-            Console.WriteLine($"Environment: \nDataDirectory: {Environment.GetEnvironmentVariable("DataDirectory")}\nDatabase     : {Environment.GetEnvironmentVariable("Database")}\n\n");
-
             // If env variables exist, read those in instead
             ConfigLidarr.Database = Environment.GetEnvironmentVariable("Database") ?? ConfigLidarr.Database;
             ConfigLidarr.DataDirectory = Environment.GetEnvironmentVariable("DataDirectory") ?? ConfigLidarr.DataDirectory;
