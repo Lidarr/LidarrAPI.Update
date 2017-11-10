@@ -26,7 +26,15 @@ namespace LidarrAPI
             ConfigLidarr = Config.GetSection("Lidarr").Get<Config>();
 
             env.ConfigureNLog("nlog.config");
-            
+
+            Console.WriteLine($"Environment: \nDataDirectory: {Environment.GetEnvironmentVariable("DataDirectory")}\nDatabase     : {Environment.GetEnvironmentVariable("Database")}\n\n");
+
+            // If env variables exist, read those in instead
+            ConfigLidarr.Database = Environment.GetEnvironmentVariable("Database") ?? ConfigLidarr.Database;
+            ConfigLidarr.DataDirectory = Environment.GetEnvironmentVariable("DataDirectory") ?? ConfigLidarr.DataDirectory;
+            ConfigLidarr.ApiKey = Environment.GetEnvironmentVariable("ApiKey") ?? ConfigLidarr.ApiKey;
+            ConfigLidarr.AppVeyorApiKey = Environment.GetEnvironmentVariable("AppVeyorApiKey") ?? ConfigLidarr.AppVeyorApiKey;
+
             SetupDataDirectory();
             SetupDatadog();
         }
@@ -72,7 +80,7 @@ namespace LidarrAPI
             // Check data path
             if (!Path.IsPathRooted(ConfigLidarr.DataDirectory))
             {
-                throw new Exception("DataDirectory path must be absolute.");
+                throw new Exception($"DataDirectory path must be absolute.\nDataDirectory: {ConfigLidarr.DataDirectory}");
             }
 
             // Create
