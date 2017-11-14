@@ -1,0 +1,9 @@
+# start db
+#/usr/bin/env bash
+
+set -e
+set -x
+
+echo "Running with existing database in /var/lib/mysql"
+
+/usr/sbin/mysqld

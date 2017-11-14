@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -e
+set -x
+
+mysql_install_db
+
+# Start the MySQL daemon in the background.
+/usr/sbin/mysqld &
+mysql_pid=$!
+
+until mysqladmin ping >/dev/null 2>&1; do
+  echo -n "."; sleep 0.2
+done
+
+# Create the DB
+mysql -e "create database $MYSQL_DATABASE"
+
+# Permit root login without password from outside container.
+mysql -e "GRANT ALL ON *.* TO root@'%' IDENTIFIED BY '' WITH GRANT OPTION"
+
+# Tell the MySQL daemon to shutdown.
+mysqladmin shutdown
+
+# Wait for the MySQL daemon to exit.
+wait $mysql_pid
