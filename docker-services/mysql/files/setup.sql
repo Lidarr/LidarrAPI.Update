@@ -1,4 +1,4 @@
-CREATE DATABASE lidarrapi;
+CREATE DATABASE ${DATABASE};
 
-CREATE USER 'root'@'lidarrupdate' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
-GRANT ALL PRIVILEGES ON lidarrapi.* to 'root'@'lidarrupdate';
+CREATE USER 'root'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+GRANT ALL PRIVILEGES ON ${DATABASE}.* to 'root'@'%';
