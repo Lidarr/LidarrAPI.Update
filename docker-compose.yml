@@ -3,9 +3,6 @@ services:
     mysql:
         build: docker-services/mysql/.
         ## For Environment Variables, please see the Dockerfile in the mysql FOLDER, they weren't sending at the right spot for the scripts from here
-        # environment:
-        #     - MYSQL_ROOT_PASSWORD=root
-        #     - DATABASE=lidarrupdate
 
     lidarrupdate:
         build: .

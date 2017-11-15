@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NLog;
 using NLog.Extensions.Logging;
 using NLog.Web;
 using Octokit;
@@ -35,6 +36,9 @@ namespace LidarrAPI
 
             SetupDataDirectory();
             SetupDatadog();
+
+            Logger logger = LogManager.GetCurrentClassLogger();
+            logger.Debug($"Config Variables\n----------------\nDataDirectory  : {ConfigLidarr.DataDirectory}\nAPIKey         : {ConfigLidarr.ApiKey}\nAppVeyorApiKey : {ConfigLidarr.AppVeyorApiKey}\n\n");
         }
 
         public IConfiguration Config { get; }

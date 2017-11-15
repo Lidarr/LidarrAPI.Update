@@ -3,10 +3,17 @@ WORKDIR /app
 
 # copy everything else and build
 COPY LidarrAPI/* ./
-RUN dotnet publish -c Release -o out
+COPY docker-services/LidarrAPI/docker-entrypoint.sh ./
+
+# There are some extra directories that cause issues for a build if they exist, remove them
+RUN rm -fr -- bin
+RUN rm -fr -- obj
+RUN rm -fr -- Properties
+RUN rm -fr -- Debug
+
+# Run needed things on build
 RUN dotnet restore
+RUN dotnet publish -c Release -o out
 
-COPY docker-entrypoint.sh ./
-
-#ENTRYPOINT ["dotnet", "out/LidarrAPI.dll"]
+# Docker Entry
 ENTRYPOINT ["./docker-entrypoint.sh"]
