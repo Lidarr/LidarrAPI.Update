@@ -10,7 +10,7 @@ services:
             - "3306:3306"
 
     lidarrupdate:
-        build: docker-services/LidarrAPI.Update/.
+        build: .
 
         ports:
             - "5000:5000"
