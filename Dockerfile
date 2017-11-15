@@ -6,4 +6,7 @@ COPY LidarrAPI/* ./
 RUN dotnet publish -c Release -o out
 RUN dotnet restore
 
-ENTRYPOINT ["dotnet", "out/LidarrAPI.dll"]
+COPY docker-entrypoint.sh ./
+
+#ENTRYPOINT ["dotnet", "out/LidarrAPI.dll"]
+ENTRYPOINT ["./docker-entrypoint.sh"]

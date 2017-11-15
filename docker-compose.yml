@@ -2,12 +2,10 @@ version: '3'
 services:
     mysql:
         build: docker-services/mysql/.
-
-        environment:
-            - MYSQL_ROOT_PASSWORD=root
-
-        ports:
-            - "3306:3306"
+        ## For Environment Variables, please see the Dockerfile in the mysql FOLDER, they weren't sending at the right spot for the scripts from here
+        # environment:
+        #     - MYSQL_ROOT_PASSWORD=root
+        #     - DATABASE=lidarrupdate
 
     lidarrupdate:
         build: .
@@ -20,7 +18,7 @@ services:
 
         environment:
             - DataDirectory=/data
-            - Database="server=mysql;user id=root;password=root;database=lidarrupdate;CharSet=utf8mb4"
+            - Database=server=mysql;user id=root;password=root;database=lidarrupdate;CharSet=utf8mb4
             - ApiKey=
             - ASPNETCORE_URLS=http://0.0.0.0:5000
 
