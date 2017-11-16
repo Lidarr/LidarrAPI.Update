@@ -5,15 +5,11 @@ WORKDIR /app
 COPY LidarrAPI/* ./
 COPY docker-services/LidarrAPI/docker-entrypoint.sh ./
 
-# There are some extra directories that cause issues for a build if they exist, remove them
-RUN rm -fr -- bin
-RUN rm -fr -- obj
-RUN rm -fr -- Properties
-RUN rm -fr -- Debug
+# Windows screws with Line Endings, so do this to be 100% sure
+RUN sed -i 's/\o015/\n/g' docker-entrypoint.sh
 
 # Run needed things on build
-RUN dotnet restore
-RUN dotnet publish -c Release -o out
+RUN dotnet restore && dotnet publish -c Release -o out
 
 # Docker Entry
 ENTRYPOINT ["./docker-entrypoint.sh"]

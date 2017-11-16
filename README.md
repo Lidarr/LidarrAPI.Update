@@ -11,9 +11,7 @@ If you want to work on **LidarrAPI.Update**, make sure you have [.NET Core 2.0 S
 
 If you would like to use the docker setup we have for this project, follow these directions:
 - Setup Environment Variables
-	- In the `docker-services/mysql/Dockerfile` 
-		- Make sure to set your ROOT password and the Database if you want to change it
-	- In the `docker-compose.yml`
-		- Make sure to update the `environment:` section to add your ApiKey, and your mysql root password
+	- Make sure you set an environment variable PRIOR to running docker-compose up called `MYSQL_ROOT_PASSWORD` OR
+	- Setup and .env file or another way of passing variables as documented here: [Docker Compose](https://docs.docker.com/compose/environment-variables/#the-env-file)
 		
 The most important thing is the `ApiKey`, the rest can be used **AS-IS**, but if the ApiKey is not set, fetching updates from AppVeyor and Github will not function correctly.
