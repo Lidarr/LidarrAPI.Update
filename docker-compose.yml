@@ -20,9 +20,9 @@ services:
             - mysql
 
         environment:
-            - DataDirectory=/data
-            - Database=server=mysql;user id=root;password=${MYSQL_ROOT_PASSWORD};database=lidarrupdate;CharSet=utf8mb4
-            - ApiKey=
+            - Lidarr:DataDirectory=/data
+            - Lidarr:Database=server=mysql;user id=root;password=${MYSQL_ROOT_PASSWORD};database=lidarrupdate;CharSet=utf8mb4
+            - Lidarr:ApiKey=
             - ASPNETCORE_URLS=http://0.0.0.0:5000
 
         volumes:

@@ -21,19 +21,19 @@ namespace LidarrAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        public Startup(IHostingEnvironment env)
         {
-            Config = configuration;
+            // Loading .NetCore style of config variables from json and environment
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+
+            Config = builder.Build();
             ConfigLidarr = Config.GetSection("Lidarr").Get<Config>();
 
             env.ConfigureNLog("nlog.config");
-
-            // If env variables exist, read those in instead
-            ConfigLidarr.Database = Environment.GetEnvironmentVariable("Database") ?? ConfigLidarr.Database;
-            ConfigLidarr.DataDirectory = Environment.GetEnvironmentVariable("DataDirectory") ?? ConfigLidarr.DataDirectory;
-            ConfigLidarr.ApiKey = Environment.GetEnvironmentVariable("ApiKey") ?? ConfigLidarr.ApiKey;
-            ConfigLidarr.AppVeyorApiKey = Environment.GetEnvironmentVariable("AppVeyorApiKey") ?? ConfigLidarr.AppVeyorApiKey;
-
             SetupDataDirectory();
             SetupDatadog();
 
