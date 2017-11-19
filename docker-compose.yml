@@ -7,10 +7,7 @@ services:
             - MYSQL_DATABASE=lidarrupdate
             - MYSQL_USER=root
             - MYSQL_PASSWORD=${MYSQL_ROOT_PASSWORD}
-        ports:
-            ## Specify a port here so that you can connect to the mysql server from the host
-            - 33060:3306
-
+            
     lidarrupdate:
         build: .
         ports:
