@@ -38,7 +38,7 @@ namespace LidarrAPI
             SetupDatadog();
 
             Logger logger = LogManager.GetCurrentClassLogger();
-            logger.Debug($"Config Variables\n----------------\nDataDirectory  : {ConfigLidarr.DataDirectory}\nAPIKey         : {ConfigLidarr.ApiKey}\nAppVeyorApiKey : {ConfigLidarr.AppVeyorApiKey}\n\n");
+            logger.Debug($"Config Variables\n----------------\nDataDirectory  : {ConfigLidarr.DataDirectory}\nDatabase       : {ConfigLidarr.Database}\nAPIKey         : {ConfigLidarr.ApiKey}\nAppVeyorApiKey : {ConfigLidarr.AppVeyorApiKey}\n\n");
         }
 
         public IConfiguration Config { get; }
