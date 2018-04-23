@@ -56,10 +56,6 @@ namespace LidarrAPI.Logging
                 Array.ForEach((string[])logEvent.Properties["Sentry"], sentryEvent.Fingerprint.Add);
             }
 
-            var osName = Environment.GetEnvironmentVariable("OS_NAME");
-            var osVersion = Environment.GetEnvironmentVariable("OS_VERSION");
-            var runTimeVersion = Environment.GetEnvironmentVariable("RUNTIME_VERSION");
-
             client.Capture(sentryEvent);
         }
 
