@@ -84,9 +84,13 @@ namespace LidarrAPI.Release
 
         private async Task CallTriggers(Branch branch)
         {
+            var logger = LogManager.GetCurrentClassLogger();
+            logger.Debug($"Calling triggers for {branch}");
+
             List<string> triggers;
             if (!_config.Triggers.TryGetValue(branch, out triggers) || triggers.Count == 0)
             {
+                logger.Debug($"No triggers for {branch}");
                 return;
             }
 
@@ -94,6 +98,7 @@ namespace LidarrAPI.Release
             {
                 try
                 {
+                    logger.Debug($"Triggering {trigger}");
                     var request = WebRequest.CreateHttp(trigger);
                     request.Method = "GET";
                     request.UserAgent = "LidarrAPI.Update/Trigger";
