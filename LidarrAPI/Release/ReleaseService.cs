@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -83,8 +84,8 @@ namespace LidarrAPI.Release
 
         private async Task CallTriggers(Branch branch)
         {
-            var triggers = _config.Triggers[branch];
-            if (triggers.Count == 0)
+            List<string> triggers;
+            if (!_config.Triggers.TryGetValue(branch, out triggers) || triggers.Count == 0)
             {
                 return;
             }
