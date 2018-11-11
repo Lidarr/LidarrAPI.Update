@@ -81,7 +81,6 @@ namespace LidarrAPI
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime applicationLifetime)
         {
             loggerFactory.AddNLog();
-            app.AddNLogWeb();
             
             if (env.IsDevelopment())
             {
