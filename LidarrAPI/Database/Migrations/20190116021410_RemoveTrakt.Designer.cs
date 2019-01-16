@@ -19,24 +19,6 @@ namespace LidarrAPI.Database.Migrations
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("LidarrAPI.Database.Models.TraktEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<Guid>("State");
-
-                    b.Property<string>("Target");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("State");
-
-                    b.ToTable("Trakt");
-                });
-
             modelBuilder.Entity("LidarrAPI.Database.Models.UpdateEntity", b =>
                 {
                     b.Property<int>("UpdateEntityId")
