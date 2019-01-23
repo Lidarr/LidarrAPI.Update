@@ -17,7 +17,7 @@ init:
   - ps: choco install docker-compose
 
 build_script:
-  - ps: docker-compose up -d mysql
+  - ps: docker-compose -f $APPVEYOR_BUILD_FOLDER\docker-compose.yml up -d mysql
   - ps: dotnet restore --no-cache
   - ps: dotnet build .\LidarrAPI\LidarrAPI.csproj -c Release
   - ps: dotnet ef database update
