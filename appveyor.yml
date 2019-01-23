@@ -1,8 +1,3 @@
-branches:
-  only:
-  - master
-  - develop
-
 assembly_info:
   patch: false
 
