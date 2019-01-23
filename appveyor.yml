@@ -15,7 +15,7 @@ init:
   - ps: (new-object net.webclient).DownloadFile('https://go.microsoft.com/fwlink/?linkid=841686', "c:/dotnet-install.exe")
   - ps: Start-Process c:\dotnet-install.exe -ArgumentList "/install","/quiet" -Wait
   - ps: choco install docker-compose
-  - ps: docker-compose up -d-f $APPVEYOR_BUILD_FOLDER/docker-compose.yml mysql
+  - ps: docker-compose up -d -f $APPVEYOR_BUILD_FOLDER/docker-compose.yml mysql
 
 build_script:
   - ps: dotnet restore --no-cache
