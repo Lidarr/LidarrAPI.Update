@@ -15,7 +15,7 @@ environment:
 
 # Install .NET Core SDK 1.0 rc4 build 004771
 init:
-  - ps: gci env:
+  - ps: gci "env:"
   - ps: (new-object net.webclient).DownloadFile('https://go.microsoft.com/fwlink/?linkid=841686', "c:/dotnet-install.exe")
   - ps: Start-Process c:\dotnet-install.exe -ArgumentList "/install","/quiet" -Wait
 
