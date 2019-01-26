@@ -10,8 +10,8 @@ services:
 
 environment:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
-  Lidarr\:Database: 'server=localhost;user id=root;password=Password12!; database=lidarrupdate;CharSet=utf8mb4'
-  Lidarr\:DataDirectory: 'C:\lidarr-update\data'
+  'Lidarr:Database': 'server=localhost;user id=root;password=Password12!; database=lidarrupdate;CharSet=utf8mb4'
+  'Lidarr:DataDirectory': 'C:\lidarr-update\data'
 
 # Install .NET Core SDK 1.0 rc4 build 004771
 init:
