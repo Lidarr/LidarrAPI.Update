@@ -24,7 +24,7 @@ init:
 build_script:
   - ps: dotnet restore --no-cache
   - ps: dotnet build .\LidarrAPI\LidarrAPI.csproj -c Release
-  - ps: dotnet ef database update --project .\LidarrAPI --startup-project .\LidarrAPI
+  - ps: dotnet ef database update --project LidarrAPI --startup-project LidarrAPI
 
 artifacts:
   - path: '.\LidarrAPI\bin\Any CPU\Release\netcoreapp2.1\LidarrAPI.dll'
